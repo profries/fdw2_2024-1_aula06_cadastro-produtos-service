@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Produto } from '../produto';
 import { ProdutoService } from '../produto.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ProdutoService } from '../produto.service';
   styleUrl: './form-produtos.component.css'
 })
 export class FormProdutosComponent {
-  produto: any = {id:0, nome:"", preco:0};
+  produto = new Produto();
   
   constructor(private produtoService: ProdutoService){  
   }
@@ -15,6 +16,6 @@ export class FormProdutosComponent {
   cadastrar() {
     alert(`Produto cadastrado com sucesso!`);
     this.produtoService.inserir(this.produto);
-    this.produto = {id:0, nome:"", preco:0};
+    this.produto = new Produto();
   }
 }

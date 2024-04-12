@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Produto } from './produto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutoService {
-  listaProdutos: any[] = [
+  idGen = 6;
+  listaProdutos: Produto[] = [
     { id: 1, nome:"Produto 1", preco: 100},
     { id: 2, nome:"Produto 2", preco: 200},
     { id: 3, nome:"Produto 3", preco: 300},
@@ -14,11 +16,16 @@ export class ProdutoService {
 
   constructor() { }
 
-  listar(): any[] {
+  private generateId() {
+    return this.idGen++;
+  }
+
+  listar(): Produto[] {
     return this.listaProdutos;
   }
   
-  inserir(produto: any) {
+  inserir(produto: Produto) {
+    produto.id = this.generateId();
     this.listaProdutos.push(produto);
   }
 }
